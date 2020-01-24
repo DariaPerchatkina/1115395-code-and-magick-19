@@ -30,9 +30,10 @@ window.renderStatistics = function (ctx) {
 
   ctx.fillStyle = 'rgba(255, 0, 0, 1)';
   ctx.font = '16px PT Mono';
+  ctx.fillRect(CLOUD_X + FONT_GAP, 140, 40, 100, 'rgba(255, 0, 0, 1)');
+  ctx.fillStyle = 'black';
   ctx.fillText('Вы', CLOUD_X + FONT_GAP, 260);
   ctx.fillText('2725', CLOUD_X + FONT_GAP, 125);
-  ctx.fillRect(CLOUD_X + FONT_GAP, 140, 40, 100, 'rgba(255, 0, 0, 1)');
 
   ctx.fillStyle = 'blue';
   ctx.fillRect(230, 90, 40, 150);
@@ -42,14 +43,16 @@ window.renderStatistics = function (ctx) {
   // ctx.fillRect(230, 90, 40, 150);
 
   ctx.fillStyle = 'yellow';
+  ctx.fillRect(320, 200, 40, 40);
+  ctx.fillStyle = 'black';
   ctx.fillText('Катя', 320, 260);
   ctx.fillText('1244', 320, 190);
-  ctx.fillRect(320, 200, 40, 40);
 
+  ctx.fillStyle = 'black';
+  ctx.fillRect(410, 190, 40, 50);
   ctx.fillStyle = 'black';
   ctx.fillText('Игорь', 410, 260);
   ctx.fillText('1339', 410, 180);
-  ctx.fillRect(410, 190, 40, 50);
 
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', 130, 40);
@@ -60,7 +63,7 @@ window.renderStatistics = function (ctx) {
 // // window.renderStatistics = function(ctx) {
 //   renderCloud(ctx, 110, 60, 'rgba(0, 0, 0, 0.3)');
 //   renderCloud(ctx, 100, 50, '#fff');
-  
+
 //   ctx.fillStyle = '#000';
 //   ctx.fillText('Вы', 110, 75);
 //   ctx.fillRect(160, 60, 430, 20);
