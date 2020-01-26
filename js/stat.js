@@ -51,7 +51,7 @@ window.renderStatistics = function (ctx, players, times) {
   for (var i = 0; i < players.length; i++) {
 
     ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
-    ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_Y + (GAP * 4) + (TEXT_HEIGHT * 3), BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
+    ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_HEIGHT - GAP * 2 - TEXT_HEIGHT, BAR_WIDTH, ((-BAR_HEIGHT) * times[i]) / maxTime);
   }
 
   ctx.font = '16px PT Mono';
