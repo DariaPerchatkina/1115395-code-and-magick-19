@@ -57,5 +57,5 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 1));
   ctx.fillText('Список результатов: ', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 3));
-};
+}; 
 
