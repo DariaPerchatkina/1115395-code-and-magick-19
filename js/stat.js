@@ -58,7 +58,7 @@ window.renderStatistics = function (ctx, players, times) {
     } else {
       ctx.fillStyle = 'rgba(0, 0, 225,' + getRandomValue(0, 1) + ')';
     }
-   debugger;
+
   ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
   ctx.fillText(times[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_TOP);
   ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_Y + CLOUD_HEIGHT - GAP * 4, BAR_WIDTH, ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime));
