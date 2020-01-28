@@ -16,6 +16,7 @@ var BAR_GAP = 50;
 var BAR_INDENT = BAR_WIDTH + BAR_GAP;
 var MAIN_COLOR = 'rgba(255, 0, 0, 1)';
 
+
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
@@ -34,12 +35,11 @@ var getMaxElement = function (arr) {
       maxElement = arr[i];
     }
   }
-
   return Math.floor(maxElement);
 };
 
 var getRandomValue = function (min, max) {
-  return Math.random() + (max - min) + min;
+  return Math.random() * (max - min) + min;
 };
 
 window.renderStatistics = function (ctx, players, times) {
@@ -52,18 +52,20 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
-    
+
     if (players [i] === 'Вы') {
-      ctx.fillStyle = 'MAIN_COLOR';
+      ctx.fillStyle = MAIN_COLOR;
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 225,' + getRandomValue(0, 1) + ')';
+      ctx.fillStyle = 'hsl(240,' + getRandomValue(0, 100) + '%, 50%)';
+      // 'rgba(0, 0, 225,' + getRandomValue(0, 1) + ')';
+
     }
 
-  ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
-  ctx.fillText(times[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_TOP);
-  ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_Y + CLOUD_HEIGHT - GAP * 4, BAR_WIDTH, ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime));
-  ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили!', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 1));
-  ctx.fillText('Список результатов: ', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 3));
+    ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
+    ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_TOP);
+    ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_Y + CLOUD_HEIGHT - GAP * 4, BAR_WIDTH, ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime));
+    ctx.font = '16px PT Mono';
+    ctx.fillText('Ура вы победили!', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 1));
+    ctx.fillText('Список результатов: ', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 3));
   }
-};s
+};
