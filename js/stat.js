@@ -57,7 +57,6 @@ window.renderStatistics = function (ctx, players, times) {
       ctx.fillStyle = MAIN_COLOR;
     } else {
       ctx.fillStyle = 'hsl(240,' + getRandomValue(0, 100) + '%, 50%)';
-      // 'rgba(0, 0, 225,' + getRandomValue(0, 1) + ')';
     }
 
     ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_Y + CLOUD_HEIGHT - GAP * 4, BAR_WIDTH, ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime));
