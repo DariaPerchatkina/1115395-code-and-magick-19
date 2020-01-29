@@ -15,7 +15,6 @@ var BAR_WIDTH = 40;
 var BAR_GAP = 50;
 var BAR_INDENT = BAR_WIDTH + BAR_GAP;
 var MAIN_COLOR = 'rgba(255, 0, 0, 1)';
-var TEXT_COLOR = '#000';
 
 
 var renderCloud = function (ctx, x, y, color) {
@@ -59,15 +58,14 @@ window.renderStatistics = function (ctx, players, times) {
     } else {
       ctx.fillStyle = 'hsl(240,' + getRandomValue(0, 100) + '%, 50%)';
       // 'rgba(0, 0, 225,' + getRandomValue(0, 1) + ')';
-
     }
 
     ctx.fillRect(CLOUD_X + FONT_GAP + (BAR_INDENT * i), CLOUD_Y + CLOUD_HEIGHT - GAP * 4, BAR_WIDTH, ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime));
+    ctx.fillStyle = '#000';
+    ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (BAR_INDENT * i), ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime) + TEXT_GAP_TOP + BAR_HEIGHT - GAP);
+    ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
+    ctx.font = '16px PT Mono';
+    ctx.fillText('Ура вы победили!', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 1));
+    ctx.fillText('Список результатов: ', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 3));
   }
-  ctx.fillStyle = '#000';
-  ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
-  ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (BAR_INDENT * i), ((CLOUD_Y - BAR_HEIGHT - TEXT_GAP_TOP) * times[i] / maxTime), TEXT_COLOR);
-  ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили!', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 1));
-  ctx.fillText('Список результатов: ', CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 3));
 };
