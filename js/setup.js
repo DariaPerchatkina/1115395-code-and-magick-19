@@ -17,6 +17,8 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 for (var i = 0; i < WIZARD_NAMES.length - 4; i++) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
+  wizardElement.querySelector('.setup-similar-label').textContent = WIZARD_NAMES[i];
+
   similarListElement.appendChild(wizardElement);
 }
 
