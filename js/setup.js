@@ -40,7 +40,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
 
   return wizardElement;
-}
+};
 
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizards.length; i++) {
