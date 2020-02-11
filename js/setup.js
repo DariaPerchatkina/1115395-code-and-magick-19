@@ -17,54 +17,33 @@ var WIZARD_FAMILYS = ['да Марья', 'Верон', 'Мирабелла', 'В
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210 ,55)', 'rgb(0, 0 ,0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var wizards = [];
+var wizardsRandom = [];
 
-function wizardsFullNames(name, family) {
-  return wizardsFullNames[Math.floor(Math.random() * WIZARD_NAMES.length) + Math.floor(Math.random() * WIZARD_FAMILYS.length)];
+// необходимо написать функцию, которая позволит создавать рандомную связку имя-фамилия для магов из представленных массивом имен и фамилий
+// каждая составляющая рандомного имени массива будет находится при помощи поиска рандомного значения,а итоговое имя мага будет получаться при попмощт конкатенации
+var getRandomValueArr = function (arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 };
 
-var wizards = [
-  {
-    name: WIZARD_NAMES[0] + ' ' + WIZARD_FAMILYS[0],
-    coatColor: COAT_COLORS[0],
-    eyesColor: EYES_COLORS[0]
-  },
-  {
-    name: WIZARD_NAMES[1] + ' ' + WIZARD_FAMILYS[1],
-    coatColor: COAT_COLORS[1],
-    eyesColor: EYES_COLORS[1]
-  },
-  {
-    name: WIZARD_NAMES[2] + ' ' + WIZARD_FAMILYS[2],
-    coatColor: COAT_COLORS[2],
-    eyesColor: EYES_COLORS[2]
-  },
-  {
-    name: WIZARD_NAMES[3] + ' ' + WIZARD_FAMILYS[3],
-    coatColor: COAT_COLORS[3],
-    eyesColor: EYES_COLORS[3]
-  },
-  {
-    name: WIZARD_NAMES[4] + ' ' + WIZARD_FAMILYS[4],
-    coatColor: COAT_COLORS[4],
-    eyesColor: EYES_COLORS[4]
-  },
-  {
-    name: WIZARD_NAMES[5] + ' ' + WIZARD_FAMILYS[5],
-    coatColor: COAT_COLORS[5],
-    eyesColor: EYES_COLORS[5]
-  },
-  {
-    name: WIZARD_NAMES[6] + ' ' + WIZARD_FAMILYS[6],
-    coatColor: COAT_COLORS[6],
-    eyesColor: EYES_COLORS[6]
-  },
-  {
-    name: WIZARD_NAMES[7] + ' ' + WIZARD_FAMILYS[7],
-    coatColor: COAT_COLORS[7],
-    eyesColor: EYES_COLORS[7]
-  }
-];
+var wizardsFullName = function () {
+  getRandomValueArr(WIZARD_NAMES);
+  getRandomValueArr(WIZARD_FAMILYS);
+  return getRandomValueArr(WIZARD_NAMES) + ' ' + getRandomValueArr(WIZARD_FAMILYS);
+};
+// выводит рандомно имя и фамилию
+wizardsFullName();
+
+// создание мага из рандомных данных и добавление в пустой массив wizardsRandom
+var wizardsRandomCreate = function (count, arr) {
+  for (i = 0; i < count; i++) {
+  arr.push(
+  {name: wizardsFullName(WIZARD_FAMILYS, WIZARD_FAMILYS),
+  coatColor: getRandomValueArr(COAT_COLORS),
+  eyasColor: getRandomValueArr(EYES_COLORS)}
+  );
+  wizardsRandomCreate(counter, wizards);
+};
+
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
