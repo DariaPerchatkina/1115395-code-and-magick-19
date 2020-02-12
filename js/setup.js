@@ -13,9 +13,10 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 .querySelector('.setup-similar-item');
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var WIZARD_FAMILYS = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var WIZARD_LASTNAME = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210 ,55)', 'rgb(0, 0 ,0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+// var wizards
 
 var wizardsRandom = [];
 
@@ -25,14 +26,14 @@ var getRandomValueArr = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-var wizardsFullName = function () {
-  getRandomValueArr(WIZARD_NAMES);
-  getRandomValueArr(WIZARD_FAMILYS);
-  return getRandomValueArr(WIZARD_NAMES) + ' ' + getRandomValueArr(WIZARD_FAMILYS);
+var wizardsFullName = function (name, lastName) {
+  var name = getRandomValueArr(name);
+  var lastName = getRandomValueArr(lastName);
+  return name + ' ' + lastName;
 };
 // выводит рандомно имя и фамилию
-wizardsFullName();
-
+var fullName = wizardFullName(WIZARD_NAMES, WIZARD_LASTNAME);
+console.log(fullName);
 // создание мага из рандомных данных и добавление в пустой массив wizardsRandom
 var wizardsRandomCreate = function (count, arr) {
   for (i = 0; i < count; i++) {
