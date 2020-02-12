@@ -2,14 +2,14 @@
 
 // находим и показываем окно настроек пользователя
 
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+var userDialog = document.querySelector('.setup'); // находит по классу разметке div с модальным окном
+userDialog.classList.remove('hidden'); // удаляет класс hidden
 
-document.querySelector('.setup-similar').classList.remove('hidden');
+document.querySelector('.setup-similar').classList.remove('hidden'); // отображает поле в модалке, где находятся 4 мага
 
-var similarListElement = document.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template')
-.content
+var similarListElement = document.querySelector('.setup-similar-list'); // находит список пока что одинаковых магов
+var similarWizardTemplate = document.querySelector('#similar-wizard-template') // находим темплейт в разметке
+.content // берем все содержимое дива
 .querySelector('.setup-similar-item');
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
