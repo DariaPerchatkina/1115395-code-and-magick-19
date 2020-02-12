@@ -16,9 +16,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_LASTNAME = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210 ,55)', 'rgb(0, 0 ,0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-// var wizards
-
-var wizardsRandom = [];
+var WIZARD_COUNT = 4;
 
 // необходимо написать функцию, которая позволит создавать рандомную связку имя-фамилия для магов из представленных массивом имен и фамилий
 // каждая составляющая рандомного имени массива будет находится при помощи поиска рандомного значения,а итоговое имя мага будет получаться при попмощт конкатенации
@@ -27,39 +25,43 @@ var getRandomValueArr = function (arr) {
 };
 
 var wizardsFullName = function (name, lastName) {
-  var name = getRandomValueArr(name);
-  var lastName = getRandomValueArr(lastName);
-  return name + ' ' + lastName;
+  var wizardsName = getRandomValueArr(name);
+  var wizardsLastName = getRandomValueArr(lastName);
+  return wizardsName + ' ' + wizardsLastName;
 };
 // выводит рандомно имя и фамилию
-var fullName = wizardFullName(WIZARD_NAMES, WIZARD_LASTNAME);
-console.log(fullName);
-// создание мага из рандомных данных и добавление в пустой массив wizardsRandom
-var wizardsRandomCreate = function (count, arr) {
-  for (i = 0; i < count; i++) {
-  arr.push(
-  {name: wizardsFullName(WIZARD_FAMILYS, WIZARD_FAMILYS),
-  coatColor: getRandomValueArr(COAT_COLORS),
-  eyasColor: getRandomValueArr(EYES_COLORS)}
-  );
-  wizardsRandomCreate(counter, wizards);
+wizardsFullName(WIZARD_NAMES, WIZARD_LASTNAME);
+
+
+// // создание мага из рандомных данных и добавление в пустой массив wizardsRandom
+var wizardsRandom = []; // делаем пустой массив данных
+var wizardsRandomCreate = function (count, arr) { // создаем функцию, которая будет генерировать случайных волшебников
+  for (i = 0; i < count; i++) { // условия работы цикла
+    var nameWizard = wizardsFullName(WIZARD_NAMES, WIZARD_LASTNAME); // обьявим переменную для генерации имен волшебников
+    var wizardCoatColor = getRandomValueArr(COAT_COLORS); // добавим  переменную для генерации рандомных цветов плащей
+    var eyesColor = getRandomValueArr(EYES_COLORS); // добавим переменную для генерации рандомных цветов глаз
+    arr.push({name: nameWizard, // создадим обьект и при помощи push добавим его в массив arr(в нашем случае это пустой массив wizardsRandom)
+      coatColor: wizardCoatColor,
+      eyasColor: eyesColor});
+  }
 };
+wizardsRandomCreate(WIZARD_COUNT, wizardsRandom); // вызовем функцию создания рандомных волшебников с аргументами(WIZARD_COUNT(отвечает за кол-во генерируемых волш.))
 
 
-var renderWizard = function (wizard) {
-  var wizardElement = similarWizardTemplate.cloneNode(true);
+var renderWizard = function (wizard) { // создаем функцию, не придумала пока как обьяснить для чего она
+  var wizardElement = similarWizardTemplate.cloneNode(true); // делаем дубликат узла template
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name; // находим в ДОМ div c классом .setup-similar-label и задаем ему текстовое содержимое
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor; // по аналогии с цветами
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
-  return wizardElement;
+  return wizardElement; // возвращаем полученный склонированный элемент с новым содержимым
 };
 
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < wizards.length; i++) {
-  fragment.appendChild(renderWizard(wizards[i]));
+var fragment = document.createDocumentFragment(); // создаем пустой объект DocumentFragment
+for (var i = 0; i < wizardsRandom.length; i++) { // условия работы цикла, идет переборка массива случайно созданных волшебников
+  fragment.appendChild(renderWizard(wizardsRandom[i])); // добавляет созданного волшебника во фрагмент
 }
-similarListElement.appendChild(fragment);
+similarListElement.appendChild(fragment); // добавляет фрагмент в разметку
 
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+userDialog.querySelector('.setup-similar').classList.remove('hidden'); // отключает класс hidden у окна,отображающего сгененрированнвх волшебников в модалке
