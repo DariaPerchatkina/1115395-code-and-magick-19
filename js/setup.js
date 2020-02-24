@@ -69,3 +69,15 @@ var renderWizards = function (wizardsElem) {
 renderWizards(wizards);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden'); // отключает класс hidden у окна,отображающего сгененрированнвх волшебников в модалке
+
+var setup = document.querySelector('.setup'); // находит блок setup в разметке
+var setupOpen = document.querySelector('.setup-open'); // находит элемент с классом setup-open
+var setupClose = setup.querySelector('.setup-close'); // нахoдит элемент с классом setup-close
+
+setupOpen.addEventListener('click', function () { // удаляет класс hidden  по клику наэлемент с классом setupOpen
+  setup.classList.remove('hidden');
+});
+
+setupClose.addEventListener('click', function () {// добавляет класс hidden  по клику наэлемент с классом setupClose
+  setup.classList.add('hidden');
+});
