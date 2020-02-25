@@ -73,11 +73,41 @@ userDialog.querySelector('.setup-similar').classList.remove('hidden'); // отк
 var setup = document.querySelector('.setup'); // находит блок setup в разметке
 var setupOpen = document.querySelector('.setup-open'); // находит элемент с классом setup-open
 var setupClose = setup.querySelector('.setup-close'); // нахoдит элемент с классом setup-close
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
 
-setupOpen.addEventListener('click', function () { // удаляет класс hidden  по клику наэлемент с классом setupOpen
+var onPopupEscPress = function (evt) {
+  if (evt.key === ESC_KEY) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
   setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
 });
 
-setupClose.addEventListener('click', function () {// добавляет класс hidden  по клику наэлемент с классом setupClose
-  setup.classList.add('hidden');
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closePopup();
+  }
 });
