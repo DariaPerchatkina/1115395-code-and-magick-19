@@ -75,9 +75,7 @@ var setupOpen = document.querySelector('.setup-open'); // находит эле�
 var setupClose = setup.querySelector('.setup-close'); // нахoдит элемент с классом setup-close
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
-
-var ESC_KEY = 'Escape';
-var ENTER_KEY = 'Enter';
+var MIN_NAME_LENGTH = 2;
 
 var onPopupEscPress = function (evt) {
   if (evt.key === ESC_KEY) {
