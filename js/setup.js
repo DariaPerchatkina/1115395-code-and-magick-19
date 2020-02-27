@@ -17,6 +17,9 @@ var WIZARD_LASTNAME = ['да Марья', 'Верон', 'Мирабелла', '�
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210 ,55)', 'rgb(0, 0 ,0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARD_COUNT = 4;
+var coatColorArr = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var eyesColorArr = ['black', 'red', 'blue', 'yellow', 'green'];
+var fireballColorArr = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 // необходимо написать функцию, которая позволит создавать рандомную связку имя-фамилия для магов из представленных массивом имен и фамилий
 // каждая составляющая рандомного имени массива будет находится при помощи поиска рандомного значения,а итоговое имя мага будет получаться при попмощт конкатенации
@@ -70,12 +73,16 @@ renderWizards(wizards);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden'); // отключает класс hidden у окна,отображающего сгененрированнвх волшебников в модалке
 
+
+//  работа со сценариями взаимодейтсвия
 var setup = document.querySelector('.setup'); // находит блок setup в разметке
 var setupOpen = document.querySelector('.setup-open'); // находит элемент с классом setup-open
 var setupClose = setup.querySelector('.setup-close'); // нахoдит элемент с классом setup-close
+var userNameInput = setup.querySelector('.setup-user-name');
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
-var MIN_NAME_LENGTH = 2;
+
+// var MIN_NAME_LENGTH = 2;
 
 var onPopupEscPress = function (evt) {
   if (evt.key === ESC_KEY) {
@@ -113,18 +120,7 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-
-setupOpen.addEventListener('click', function () {
-  setup.classList.remove('hidden');
-});
-
-setupClose.addEventListener('click', function () {
-  setup.classList.add('hidden');
-});
-
-var userNameInput = setup.querySelector('.setup-user-name');
-
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
   } else if (userNameInput.validity.tooLong) {
@@ -132,15 +128,29 @@ userNameInput.addEventListener('invalid', function (evt) {
   } else if (userNameInput.validity.valueMissing) {
     userNameInput.setCustomValidity('Обязательное поле');
   } else {
-    userNameInput.setCustomValidity('');
+    userNameInput.setCustomValidity(''); // сбрасывает значение поля
   }
 });
 
-userNameInput.addEventListener('input', function (evt) {
-  var target = evt.target;
-  if (target.value.length < MIN_NAME_LENGTH) {
-    target.setCustomValidity('Имя должно состоять минимум из ' + MIN_NAME_LENGTH + '-х символов');
-  } else {
-    target.setCustomValidity('');
-  }
+var wizardCoat = setup.querySelector('.wizard-coat');
+var wizardEyes = setup.querySelector('.wizard-eyes');
+var fireballSetup = setup.querySelector('.setup-fireball-wrap');
+
+wizardCoat.addEventListener('click', function () {
+  var playerWizardCoatColor = getRandomValueArr(coatColorArr);
+  wizardCoat.style.fill = playerWizardCoatColor;
+  setup.querySelector('.setup-player').querySelector('input[name="coat-color"]').value = playerWizardCoatColor;
+});
+
+wizardEyes.addEventListener('click', function () {
+  var playerWizardEyesColor = getRandomValueArr(eyesColorArr);
+  wizardEyes.style.fill = playerWizardEyesColor;
+  setup.querySelector('.setup-player').querySelector('input[name="eyes-color"]').value = playerWizardEyesColor;
+
+});
+
+fireballSetup.addEventListener('click', function () {
+  var playerFireballColor = getRandomValueArr(fireballColorArr);
+  fireballSetup.style.background = playerFireballColor;
+  fireballSetup.querySelector('input').value = playerFireballColor;
 });
